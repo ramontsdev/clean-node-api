@@ -6,14 +6,18 @@ type SutTypes = {
   sut: SignUpController
   emailValidatorStub: EmailValidator
 }
-function makeSut(): SutTypes {
+
+function makeEmailValidator(): EmailValidator {
   class EmailValidatorStub implements EmailValidator {
     isValid(email: string): boolean {
       return true
     }
   }
+  return new EmailValidatorStub()
+}
+function makeSut(): SutTypes {
 
-  const emailValidatorStub = new EmailValidatorStub()
+  const emailValidatorStub = makeEmailValidator()
   const sut = new SignUpController(emailValidatorStub)
 
   return {
