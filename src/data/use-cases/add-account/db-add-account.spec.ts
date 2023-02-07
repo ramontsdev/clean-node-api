@@ -1,5 +1,5 @@
-import { Encrypter } from "../../protocols/encrypter";
-import { DbAddAccount } from "./add-account";
+import { DbAddAccount } from "./db-add-account";
+import { Encrypter } from "./db-add-account-protocols";
 
 function makeEncrypter(): Encrypter {
   class EncrypterStub implements Encrypter {
@@ -12,7 +12,8 @@ function makeEncrypter(): Encrypter {
 }
 
 type SutTypes = {
-  sut: DbAddAccount;
+  sut: DbAddAccount
+  ;
   encrypterStub: Encrypter
 }
 function makeSut(): SutTypes {
