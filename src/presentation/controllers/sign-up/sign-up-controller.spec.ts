@@ -1,8 +1,6 @@
-import { AccountModel } from "../../domain/models/account";
-import { AddAccount, AddAccountModel } from "../../domain/use-cases/add-account";
-import { InvalidParamError, MissingParamError, ServerError } from "../errors";
-import { EmailValidator } from "../protocols";
+import { InvalidParamError, MissingParamError, ServerError } from "../../errors";
 import { SignUpController } from "./sign-up-controller";
+import { AccountModel, AddAccount, AddAccountModel, EmailValidator } from "./sign-up-protocols";
 
 function makeEmailValidator(): EmailValidator {
   class EmailValidatorStub implements EmailValidator {
