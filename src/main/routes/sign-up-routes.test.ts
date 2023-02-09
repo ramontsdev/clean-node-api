@@ -12,8 +12,8 @@ describe('SignUp Routes', () => {
   })
 
   beforeEach(async () => {
-    const accountCollection = MongoHelper.getCollection('accounts')
-    accountCollection.deleteMany({})
+    const accountCollection = await MongoHelper.getCollection('accounts')
+    await accountCollection.deleteMany({})
   })
 
   test('Should return an account on success', async () => {
@@ -25,6 +25,6 @@ describe('SignUp Routes', () => {
         password: '123',
         passwordConfirmation: '123',
       })
-      .expect(200)
+      .expect(201)
   })
 })
