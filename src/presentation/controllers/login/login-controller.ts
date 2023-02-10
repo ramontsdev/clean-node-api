@@ -1,6 +1,6 @@
 import { Authentication } from "../../../domain/use-cases/authentication";
 import { InvalidParamError, MissingParamError } from "../../errors";
-import { badRequest, serverError, unauthorized } from "../../helpers/http-helper";
+import { badRequest, ok, serverError, unauthorized } from "../../helpers/http-helper";
 import { Controller, EmailValidator, HttpRequest, HttpResponse } from "./login-protocols";
 
 export class LoginController implements Controller {
@@ -10,7 +10,6 @@ export class LoginController implements Controller {
     private readonly authentication: Authentication
   ) { }
 
-  // @ts-ignore
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredFields = ['email', 'password']
@@ -32,6 +31,7 @@ export class LoginController implements Controller {
         return unauthorized()
       }
 
+      return ok({ accessToken })
     } catch (error) {
       return serverError(error as Error)
     }
