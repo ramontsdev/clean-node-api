@@ -1,8 +1,7 @@
-import { Authentication } from "../../../domain/use-cases/authentication";
 import { InvalidParamError, MissingParamError } from "../../errors";
 import { badRequest, serverError, unauthorized } from "../../helpers/http-helper";
-import { EmailValidator } from "../sign-up/sign-up-protocols";
 import { LoginController } from "./login-controller";
+import { Authentication, EmailValidator } from "./login-protocols";
 
 function makeEmailValidator(): EmailValidator {
   class EmailValidatorStub implements EmailValidator {
