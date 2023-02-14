@@ -1,10 +1,10 @@
-import { AuthenticationModel } from "../../../domain/use-cases/authentication"
-import { HashComparer } from "../../protocols/cryptography/hash-comparer"
-import { TokenGenerator } from "../../protocols/cryptography/token-generator"
-import { LoadAccountByEmailRepository } from "../../protocols/db/load-account-by-email-repository"
-import { UpdateAccessTokenRepository } from "../../protocols/db/update-access-token-repository"
 import { AccountModel } from "../add-account/db-add-account-protocols"
-import { DbAuthentication } from "./authentication"
+import { DbAuthentication } from "./db-authentication"
+import {
+  AuthenticationModel, HashComparer,
+  LoadAccountByEmailRepository, TokenGenerator,
+  UpdateAccessTokenRepository
+} from "./db-authentication-protocols"
 
 function makeFakeAccount(): AccountModel {
   return {

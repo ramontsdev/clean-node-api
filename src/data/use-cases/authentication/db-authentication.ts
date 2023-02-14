@@ -1,8 +1,9 @@
-import { Authentication, AuthenticationModel } from "../../../domain/use-cases/authentication";
-import { HashComparer } from "../../protocols/cryptography/hash-comparer";
-import { TokenGenerator } from "../../protocols/cryptography/token-generator";
-import { LoadAccountByEmailRepository } from "../../protocols/db/load-account-by-email-repository";
-import { UpdateAccessTokenRepository } from "../../protocols/db/update-access-token-repository";
+import {
+  Authentication,
+  AuthenticationModel, HashComparer,
+  LoadAccountByEmailRepository, TokenGenerator,
+  UpdateAccessTokenRepository
+} from "./db-authentication-protocols"
 
 export class DbAuthentication implements Authentication {
   constructor(
