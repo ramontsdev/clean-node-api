@@ -10,8 +10,13 @@
     "strict": true,
     "skipLibCheck": true
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "jest.config.ts",
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts",
   ]
 }
