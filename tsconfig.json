@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "outDir": "dist",
     "module": "commonjs",
+    "target": "es2016",
+    "esModuleInterop": true,
+    "sourceMap": true,
     "rootDir": "src",
     "resolveJsonModule": true,
-    "outDir": "dist",
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // "incremental": true
   },
   "include": [
     "src"
