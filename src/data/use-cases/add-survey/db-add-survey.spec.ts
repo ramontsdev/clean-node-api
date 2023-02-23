@@ -11,21 +11,44 @@ function makeFakeSurveyData(): AddSurveyModel {
   }
 }
 
+function makeAddSurveyRepository() {
+  class AddSurveyRepositoryStub implements AddSurveyRepository {
+    async add(surveyData: AddSurveyModel): Promise<void> {
+
+    }
+  }
+
+  return new AddSurveyRepositoryStub()
+}
+
+function makeSut() {
+  const addSurveyRepositoryStub = makeAddSurveyRepository()
+  const sut = new DbAddSurvey(addSurveyRepositoryStub)
+
+  return {
+    sut,
+    addSurveyRepositoryStub
+  }
+}
+
 describe('DdAddSurvey Use Case', () => {
   test('Should call AddSurveyRepository with correct values', async () => {
-    class AddSurveyRepositoryStub implements AddSurveyRepository {
-      async add(surveyData: AddSurveyModel): Promise<void> {
+    const { sut, addSurveyRepositoryStub } = makeSut()
 
-      }
-    }
-    const addSurveyRepositoryStub = new AddSurveyRepositoryStub()
     const addSpy = jest.spyOn(addSurveyRepositoryStub, 'add')
-
-    const sut = new DbAddSurvey(addSurveyRepositoryStub)
 
     const surveyData = makeFakeSurveyData()
     await sut.add(surveyData)
 
     expect(addSpy).toHaveBeenCalledWith(surveyData)
+  })
+
+  test('Should throw if AddSurveyRepository throws', async () => {
+    const { sut, addSurveyRepositoryStub } = makeSut()
+
+    jest.spyOn(addSurveyRepositoryStub, 'add').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+
+    const promise = sut.add(makeFakeSurveyData())
+    await expect(promise).rejects.toThrow()
   })
 })
