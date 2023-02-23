@@ -1,8 +1,12 @@
-import { EmailInUseError, MissingParamError, ServerError } from "../../errors";
-import { badRequest, created, forbidden, serverError } from "../../helpers/http/http-helper";
-import { Validation } from "../../protocols/validation";
+import { EmailInUseError, MissingParamError, ServerError } from "../../../errors";
+import { badRequest, created, forbidden, serverError } from "../../../helpers/http/http-helper";
+import { Validation } from "../../../protocols/validation";
 import { SignUpController } from "./sign-up-controller";
-import { AccountModel, AddAccount, AddAccountModel, Authentication, AuthenticationModel, HttpRequest } from "./sign-up-protocols";
+import {
+  AccountModel, AddAccount,
+  AddAccountModel, Authentication,
+  AuthenticationModel, HttpRequest
+} from "./sign-up-protocols";
 
 
 function makeAddAccount(): AddAccount {
