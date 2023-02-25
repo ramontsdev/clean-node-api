@@ -1,8 +1,7 @@
-import { AccountModel } from '../../domain/models/account'
-import { LoadAccountByToken } from '../../domain/use-cases/load-account-by-token'
 import { AccessDeniedError } from '../errors'
 import { forbidden, ok, serverError } from '../helpers/http/http-helper'
 import { AuthMiddleware } from './auth-middleware'
+import { AccountModel, HttpRequest, LoadAccountByToken } from './auth-middleware-protocols'
 
 function makeFakeAccount(): AccountModel {
   return {
@@ -23,7 +22,7 @@ function makeLoadAccountByToken() {
   return new LoadAccountByTokenStub()
 }
 
-function makeFakeRequest() {
+function makeFakeRequest(): HttpRequest {
   return {
     headers: {
       'x-access-token': 'any_token'
