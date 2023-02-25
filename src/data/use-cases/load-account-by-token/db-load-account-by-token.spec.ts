@@ -1,17 +1,39 @@
 import { Decrypter } from '../../protocols/cryptography/decrypter'
 import { DbLoadAccountByToken } from './db-load-account-by-token'
 
+function makeDecrypter() {
+  class DecrypterStub implements Decrypter {
+    async decrypt(value: string): Promise<string | null> {
+      return ''
+    }
+  }
+  return new DecrypterStub()
+}
+
+function makeSut() {
+  const decrypterStub = makeDecrypter()
+  const sut = new DbLoadAccountByToken(decrypterStub)
+
+  return {
+    sut,
+    decrypterStub
+  }
+}
+
 describe('DbLoadAccountByToken use case', () => {
   test('Should call Decrypter with correct values', async () => {
-    class DecrypterStub implements Decrypter {
-      async decrypt(value: string): Promise<string> {
-        return ''
-      }
-    }
-    const decrypterStub = new DecrypterStub()
+    const { sut, decrypterStub } = makeSut()
     const decryptSpy = jest.spyOn(decrypterStub, 'decrypt')
-    const sut = new DbLoadAccountByToken(decrypterStub)
-    await sut.load('any_token')
+
+    await sut.load('any_token', 'any_role')
     expect(decryptSpy).toHaveBeenCalledWith('any_token')
+  })
+
+  test('Should return null if Decrypter returns null', async () => {
+    const { sut, decrypterStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt')
+      .mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    const account = await sut.load('any_token', 'any_role')
+    expect(account).toBeNull()
   })
 })
