@@ -91,7 +91,6 @@ describe('DbLoadAccountByToken use case', () => {
     await expect(promise).rejects.toThrow()
   })
 
-
   test('Should throw if LoadAccountByTokenRepository throws', async () => {
     const { sut, loadAccountByTokenRepositoryStub } = makeSut()
 
