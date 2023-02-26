@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/main/server.js",
     "build": "rm -rf dist && tsc",
-    "dev": "tsx src/main/server.ts",
+    "dev": "tsx --watch src/main/server.ts",
     "debug": "nodemon -L ./dist/main/server.js",
     "up": "yarn build && docker-compose up -d",
     "down": "docker-compose down -v",
