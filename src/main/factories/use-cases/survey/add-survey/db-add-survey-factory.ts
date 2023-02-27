@@ -2,7 +2,7 @@ import { DbAddSurvey } from "../../../../../data/use-cases/add-survey/db-add-sur
 import { AddSurvey } from "../../../../../domain/use-cases/add-survey";
 import { SurveyMongoRepository } from "../../../../../infra/db/mongodb/survey-repository/survey-mongo-repository";
 
-export function makeDbAddASurvey(): AddSurvey {
+export function makeDbAddSurvey(): AddSurvey {
   const surveyMongoRepository = new SurveyMongoRepository()
 
   return new DbAddSurvey(surveyMongoRepository)
