@@ -1,5 +1,5 @@
+import { badRequest, noContent, serverError } from '@/presentation/helpers/http/http-helper';
 import MockDate from 'mockdate';
-import { badRequest, noContent, serverError } from '../../../helpers/http/http-helper';
 import { AddSurveyController } from './add-survey-controller';
 import { AddSurvey, AddSurveyModel, HttpRequest, Validation } from "./add-survey-controller-protocols";
 

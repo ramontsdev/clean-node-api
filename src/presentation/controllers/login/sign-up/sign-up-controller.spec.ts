@@ -1,6 +1,6 @@
-import { EmailInUseError, MissingParamError, ServerError } from "../../../errors";
-import { badRequest, created, forbidden, serverError } from "../../../helpers/http/http-helper";
-import { Validation } from "../../../protocols/validation";
+import { EmailInUseError, MissingParamError, ServerError } from "@/presentation/errors";
+import { badRequest, created, forbidden, serverError } from "@/presentation/helpers/http/http-helper";
+import { Validation } from "@/presentation/protocols/validation";
 import { SignUpController } from "./sign-up-controller";
 import {
   AccountModel, AddAccount,

@@ -1,3 +1,3 @@
-export * from '../../../../domain/use-cases/add-survey';
-export * from '../../../protocols';
+export * from '@/domain/use-cases/add-survey';
+export * from '@/presentation/protocols';
 
