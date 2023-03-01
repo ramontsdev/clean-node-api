@@ -6,7 +6,7 @@ import {
 } from '@/validation/validators'
 import { makeSignUpValidation } from "./sign-up-validation-factory"
 
-jest.mock("../../../../../validation/validators/validation-composite")
+jest.mock("@/validation/validators/validation-composite")
 
 function makeEmailValidator(): EmailValidator {
   class EmailValidatorStub implements EmailValidator {
